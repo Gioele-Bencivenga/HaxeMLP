@@ -1,0 +1,114 @@
+<vbox width="100%" height="100%">
+	<style>
+		.label {
+			font-size: 12;
+		}
+
+		.menubar-button, .menu .label {
+			font-size: 16px;
+		}
+
+		.menuitem:hover, .menuitem:selected {
+			background-color: #696969;
+		}
+
+		#box_version {
+			padding: 8px;
+		}
+
+		#lbl_version, #lbl_versionH {
+			font-size: 14; 
+			color: white;
+			filter: outline(#696969, 2);
+		}
+
+		.button{
+			font-size: 16px;
+		}
+	</style>
+
+	<!-- Top Menu Bar -->
+	<menubar width="100%">
+		<menu text="Perceptron">
+			<menuitem id="btn_init_perceptron" text="Initialise" />
+			<menuseparator />
+		</menu>
+		<menu text="About">
+			<menuitem id="link_website" text="My Website" icon="assets/icons/icon_website.png" />
+			<menuseparator />
+			<menuitem id="link_github" text="Code on GitHub" icon="assets/icons/icon_github.png" />
+		</menu>
+	</menubar>
+
+	<!-- Body -->
+	<vbox width="100%">
+		<hbox width="100%">
+			<vbox width="100%">
+				<!-- List Heading -->
+				<label text="Input Layer" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
+
+				<listview width="100">
+					<data>
+						<item text="Item 1" />
+						<item text="Item 2" />
+						<item text="Item 3" />
+						<item text="Item 4" />
+						<item text="Item 5" />
+						<item text="Item 6" />
+						<item text="Item 7" />
+						<item text="Item 8" />
+						<item text="Item 9" />
+					</data>
+				</listview>
+			</vbox>
+
+			<vbox width="100%">
+				<!-- List Heading -->
+				<label text="Hidden Layer 1" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
+
+				<listview width="100">
+					<data>
+						<item text="Item 1" />
+						<item text="Item 2" />
+						<item text="Item 3" />
+						<item text="Item 4" />
+						<item text="Item 5" />
+						<item text="Item 6" />
+						<item text="Item 7" />
+						<item text="Item 8" />
+						<item text="Item 9" />
+					</data>
+				</listview>
+			</vbox>
+
+			<vbox width="100%">
+				<!-- List Heading -->
+				<label text="Output Layer" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
+
+				<listview width="100">
+					<data>
+						<item text="Item 1" />
+						<item text="Item 2" />
+						<item text="Item 3" />
+						<item text="Item 4" />
+						<item text="Item 5" />
+						<item text="Item 6" />
+						<item text="Item 7" />
+						<item text="Item 8" />
+						<item text="Item 9" />
+					</data>
+				</listview>
+			</vbox>
+		</hbox>
+	</vbox>
+
+	<!-- App Version Label -->
+	<box width="100%" height="100%">
+		<vbox verticalAlign="bottom" horizontalAlign="right">
+			<hbox id="box_version">
+				<label id="lbl_versionH" text="Dev Version: " />
+				<label id="lbl_version" />
+			</hbox>
+		</vbox>
+	</box>
+</vbox>
