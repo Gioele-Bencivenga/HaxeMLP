@@ -1,5 +1,6 @@
 package states;
 
+import haxe.ui.containers.ListView;
 import utilities.HxFuncs;
 import utilities.FlxFuncs;
 import flixel.math.FlxMath;
@@ -19,7 +20,6 @@ import flixel.math.FlxPoint;
 import flixel.group.FlxGroup;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import echo.util.TileMap;
 import brains.*;
 
 using flixel.util.FlxArrayUtil;
@@ -43,6 +43,16 @@ class PlayState extends FlxState {
 
 	var perc:Perceptron;
 
+	/**
+	 * List displaying the input layer neuron weights.
+	 */
+	var inputLayerList:ListView;
+
+	/**
+	 * List displaying the output layer neuron weights.
+	 */
+	var outputLayerList:ListView;
+
 	override function create() {
 		/// UI STUFF
 		Toolkit.init();
@@ -54,15 +64,25 @@ class PlayState extends FlxState {
 		uiView.cameras = [uiCam]; // all of the ui components contained in uiView will be rendered by uiCam
 		uiView.scrollFactor.set(0, 0); // and they won't scroll
 		add(uiView);
-		// xml events are for scripting with hscript, so we need to get the generated component from code and assign it to the function
+		// get the generated component and assign it to the function (xml events are for slower scripting with hscript)
 		uiView.findComponent("btn_init_perceptron", MenuItem).onClick = btn_initPerceptron_onClick;
 		uiView.findComponent("link_website", MenuItem).onClick = link_website_onClick;
 		uiView.findComponent("link_github", MenuItem).onClick = link_github_onClick;
 		uiView.findComponent("lbl_version", Label).text = haxe.macro.Compiler.getDefine("GAME_VERSION");
+		// get a reference to our lists
+		inputLayerList = uiView.findComponent("lst_input_layer", ListView);
+		outputLayerList = uiView.findComponent("lst_output_layer", ListView);
 	}
 
-	function btn_initPerceptron_onClick(_){
+	function btn_initPerceptron_onClick(_) {
+		perc = new Perceptron(5);
 
+		// clear the list of example values
+		inputLayerList.dataSource.clear();
+
+		for (neuron in perc.inputLayer) {
+			inputLayerList.dataSource.add(neuron);
+		}
 	}
 
 	function link_website_onClick(_) {
@@ -70,13 +90,13 @@ class PlayState extends FlxState {
 	}
 
 	function link_github_onClick(_) {
-		FlxG.openURL("https://github.com/Gioele-Bencivenga/TilemapGen", "_blank");
+		FlxG.openURL("https://github.com/Gioele-Bencivenga/HaxeMLP", "_blank");
 	}
 
 	function setupCameras() {
 		simCam = new FlxZoomCamera(0, 0, FlxG.width, FlxG.height); // create the simulation camera
 		simCam.zoomSpeed = 4;
-		simCam.bgColor = FlxColor.BLACK; // empty space will be rendered as black
+		simCam.bgColor = FlxColor.fromString("#362e28");
 
 		FlxG.cameras.reset(simCam); // dump all current cameras and set the simulation camera as the main one
 		// FlxCamera.defaultCameras = [simCam]; // strange stuff seems to happen with this

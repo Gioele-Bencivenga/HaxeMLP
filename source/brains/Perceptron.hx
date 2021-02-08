@@ -1,7 +1,6 @@
 package brains;
 
 import utilities.HxFuncs;
-import hxmath.math.Vector2;
 import flixel.FlxG;
 
 /**
@@ -37,20 +36,22 @@ class Perceptron {
 	 * @param _inputs the array of input inputLayer the Perceptron receives
 	 * @return the summed vector
 	 */
-	public function feedForward(_input:Vector2):Vector2 {
-		var sum = new Vector2(0, 0);
+	//public function feedForward(_input:Vector2):Vector2 {
+	//	var sum = new Vector2(0, 0);
 
-		for (i in 0...inputLayer.length) {
-			_input.multiplyWith(inputLayer[i]);
-			sum.addWith(_input);
-		}
-		return sum;
-	}
+	//	for (i in 0...inputLayer.length) {
+	//		_input.multiplyWith(inputLayer[i]);
+	//		sum.addWith(_input);
+	//	}
+	//	return sum;
+	//}
 
+	/*
 	public function train(_input:Vector2, _error:Vector2) {
 		// Adjust all the inputLayer according to the error and learning rate
 		inputLayer[0] += learningRate * _error.x * _input.x;
 		inputLayer[0] += learningRate * _error.y * _input.y;
 		inputLayer[0] = HxFuncs.constrain(inputLayer[0], 0, 1);
 	}
+	*/
 }
