@@ -43,13 +43,14 @@
 	<!-- Body -->
 	<vbox width="100%">
 		<hbox width="100%">
+			<!-- Input Layer List Container-->
 			<vbox width="100%">
 				<!-- List+Heading Container-->
 				<vbox horizontalAlign="center">
 					<!-- List Heading -->
 					<label text="Input Layer" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
 					<!-- List View-->
-					<listview id="lst_input_layer" width="300">
+					<listview id="lst_input_layer" width="220">
 						<data>
 							<item text="weight 1" />
 							<item text="weight 2" />
@@ -59,13 +60,48 @@
 				</vbox>
 			</vbox>
 
+			<!-- Weigths (inputToHidden) List Container-->
 			<vbox width="100%">
 				<!-- List+Heading Container-->
 				<vbox horizontalAlign="center">
 					<!-- List Heading -->
-					<label text="Hidden Layer 1" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
+					<label text="Connection Weights" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
 					<!-- List View-->
-					<listview width="300">
+					<listview id="lst_inpToHid_weights" width="220">
+						<data>
+							<item text="weight 1" />
+							<item text="weight 2" />
+							<item text="........" />
+						</data>
+					</listview>
+				</vbox>
+			</vbox>
+
+			<!--Hidden Layer List Container-->
+			<vbox width="100%">
+				<!-- List+Heading Container-->
+				<vbox horizontalAlign="center">
+					<!-- List Heading -->
+					<label text="Hidden Layer" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
+					<!-- List View-->
+					<listview id="lst_hidden_layer" width="220">
+						<data>
+							<item text="weight 1" />
+							<item text="weight 2" />
+							<item text="........" />
+						</data>
+					</listview>
+				</vbox>
+			</vbox>
+
+			<!-- Weigths (hiddenToOutput) List Container-->
+			<vbox width="100%">
+				<!-- List+Heading Container-->
+				<vbox horizontalAlign="center">
+					<!-- List Heading -->
+					<label text="Connection Weights" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
+					<!-- List View-->
+					<listview id="lst_hidToOut_weights" width="220">
 						<data>
 							<item text="weight 1" />
 							<item text="weight 2" />
@@ -81,7 +117,7 @@
 					<!-- List Heading -->
 					<label text="Output Layer" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
 					<!-- List View-->
-					<listview id="lst_output_layer" width="300">
+					<listview id="lst_output_layer" width="200">
 						<data>
 							<item text="weight 1" />
 							<item text="weight 2" />
