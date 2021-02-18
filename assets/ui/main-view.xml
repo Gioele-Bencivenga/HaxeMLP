@@ -8,10 +8,6 @@
 			font-size: 16px;
 		}
 
-		.menuitem:hover, .menuitem:selected {
-			background-color: #696969;
-		}
-
 		#box_version {
 			padding: 8px;
 		}
@@ -30,15 +26,21 @@
 	<!-- Top Menu Bar -->
 	<menubar width="100%">
 		<menu text="Perceptron">
-			<menuitem id="btn_init_perceptron" text="Initialise" />
+			<menuitem id="btn_init_perceptron" text="Initialise" tooltip="Initialise the perceptron with random weights"/>
 			<menuseparator />
 		</menu>
 		<menu text="About">
-			<menuitem id="link_website" text="My Website" icon="assets/icons/icon_website.png" />
+			<menuitem id="link_website" text="My Website" icon="assets/icons/icon_website_light.png" />
 			<menuseparator />
-			<menuitem id="link_github" text="Code on GitHub" icon="assets/icons/icon_github.png" />
+			<menuitem id="link_github" text="Code on GitHub" icon="assets/icons/icon_github_light.png" />
 		</menu>
 	</menubar>
+
+	<hbox width="100%">
+		<box width="100%">
+			<button id="btn_process" text="process" horizontalAlign="center" icon="assets/icons/icon_play_light.png" tooltip="Process the inputs through the network"/>
+		</box>
+	</hbox>
 
 	<!-- Body -->
 	<vbox width="100%">

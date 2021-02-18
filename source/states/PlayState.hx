@@ -1,5 +1,6 @@
 package states;
 
+import haxe.ui.themes.Theme;
 import haxe.ui.containers.ListView;
 import utilities.HxFuncs;
 import utilities.FlxFuncs;
@@ -57,6 +58,7 @@ class PlayState extends FlxState {
 		/// UI STUFF
 		Toolkit.init();
 		Toolkit.scale = 1; // temporary fix for scaling while ian fixes it
+		Toolkit.theme = Theme.DARK;
 
 		setupCameras();
 
@@ -82,7 +84,7 @@ class PlayState extends FlxState {
 	}
 
 	function btn_initPerceptron_onClick(_) {
-		perc = new Perceptron(5, 3);
+		perc = new Perceptron(4, 3);
 
 		// clear all lists of previous values
 		for (list in layerLists) {
@@ -127,6 +129,7 @@ class PlayState extends FlxState {
 		simCam = new FlxZoomCamera(0, 0, FlxG.width, FlxG.height); // create the simulation camera
 		simCam.zoomSpeed = 4;
 		simCam.bgColor = FlxColor.fromString("#362e28");
+		simCam.bgColor = FlxColor.BLACK;
 
 		FlxG.cameras.reset(simCam); // dump all current cameras and set the simulation camera as the main one
 		// FlxCamera.defaultCameras = [simCam]; // strange stuff seems to happen with this
