@@ -1,7 +1,7 @@
 package brains;
 
-import utilities.HxFuncs;
 import flixel.FlxG;
+import Math;
 
 /**
  * MultiLayer Perceptron.
@@ -69,18 +69,26 @@ class Perceptron {
 	}
 
 	/**
-	 * This function takes in an array of Vector2 and calculates something.
+	 * Feed the input forward through the network.
+	 * 
+	 * Each neuron calculates the weighted sum of 
 	 * @param _inputs the array of input inputLayer the Perceptron receives
 	 * @return the summed vector
 	 */
-	// public function feedForward(_input:Vector2):Vector2 {
-	//	var sum = new Vector2(0, 0);
-	//	for (i in 0...inputLayer.length) {
-	//		_input.multiplyWith(inputLayer[i]);
-	//		sum.addWith(_input);
-	//	}
-	//	return sum;
-	// }
+	public function feedForward(_inputs:Array<Float>):Float {
+
+		for(neuron in hiddenLayer){
+			var sum:Float = 0;
+			for(inputNeuron in inputLayer){
+				//sum += inputNeuron * weight
+				// take a piece or paper and go over the process with it
+				// watch recording of james 
+			}
+
+		}
+		return 0;
+	}
+
 	/*
 		public function train(_input:Vector2, _error:Vector2) {
 			// Adjust all the inputLayer according to the error and learning rate
