@@ -43,11 +43,11 @@ class HxFuncs {
 	}
 
 	/**
-	 * Computes the hyperbolic tangent function of the passed in value.
+	 * Computes the hyperbolic tangent function of the `_value` argument
 	 * 
 	 * Courtesy of SunDaw#8306 on the Haxe Discord.
 	 * @param _value the value you want to calculate the hyperbolic tanget of
-	 * @return Float
+	 * @return the computed value
 	 */
 	public static inline function tanh(_value:Float):Float {
 		var exponent = 2 * _value;

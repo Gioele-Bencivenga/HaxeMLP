@@ -1,5 +1,6 @@
 package brains;
 
+import utilities.HxFuncs;
 import flixel.FlxG;
 import Math;
 
@@ -27,9 +28,19 @@ class Perceptron {
 	public var hiddenLayer(default, null):Array<Float>;
 
 	/**
+	 * Array of outputs processed by the hidden layer.
+	 */
+	public var hiddenOutputs(default, null):Array<Float>;
+
+	/**
 	 * The perceptron's hidden layer.
 	 */
 	public var outputLayer(default, null):Array<Float>;
+
+	/**
+	 * Array of outputs processed by the output layer.
+	 */
+	public var outputOutputs(default, null):Array<Float>;
 
 	/**
 	 * Array of weights for the connections between neurons.
@@ -53,15 +64,15 @@ class Perceptron {
 	/**
 	 * Creates a new `Perceptron` instance and initializes each neuron to random values between -1 and 1 inclusive.
 	 * @param _inputLayerSize the number of neurons that the `inputLayer` will have
-	 * @param learningRate `0.01` by default, it's the `Perceptron`'s learning rate
 	 */
-	public function new(_inputLayerSize:Int, _hiddenLayerSize:Int, _learningRate = 0.01) {
-		learningRate = _learningRate;
-
+	public function new(_inputLayerSize:Int, _hiddenLayerSize:Int, _outputLayerSize:Int) {
 		// initialise layers with neurons having random values
 		inputLayer = [for (i in 0..._inputLayerSize) FlxG.random.float(-1, 1)];
 		hiddenLayer = [for (i in 0..._hiddenLayerSize) FlxG.random.float(-1, 1)];
-		outputLayer = [for (i in 0...1) FlxG.random.float(-1, 1)];
+		outputLayer = [for (i in 0..._outputLayerSize) FlxG.random.float(-1, 1)];
+		// initialise lists of outputs with 0s
+		hiddenOutputs = [for (i in 0..._hiddenLayerSize) 0];
+		outputOutputs = [for (i in 0..._outputLayerSize) 0];
 
 		// calculate number of connection weights between neurons and initialise them with random values
 		weightsCount = (inputLayer.length * hiddenLayer.length) + (hiddenLayer.length * outputLayer.length);
@@ -69,32 +80,27 @@ class Perceptron {
 	}
 
 	/**
-	 * Feed the input forward through the network.
+	 * Feed the input forward through the network
 	 * 
-	 * Each neuron calculates the weighted sum of 
-	 * @param _inputs the array of input inputLayer the Perceptron receives
-	 * @return the summed vector
+	 * Optimize with matrix multiplication in the future if needed
 	 */
-	public function feedForward(_inputs:Array<Float>):Float {
+	public function feedForward() {
+		var wc:Int = 0; // weights counter
 
-		for(neuron in hiddenLayer){
+		for (i in 0...hiddenLayer.length) {
 			var sum:Float = 0;
-			for(inputNeuron in inputLayer){
-				//sum += inputNeuron * weight
-				// take a piece or paper and go over the process with it
-				// watch recording of james 
+			for (j in 0...inputLayer.length) {
+				sum += inputLayer[j] * weights[wc++];
 			}
-
+			hiddenOutputs[i] = HxFuncs.tanh(sum);
 		}
-		return 0;
+
+		for (i in 0...outputLayer.length) {
+			var sum:Float = 0;
+			for (j in 0...hiddenOutputs.length) {
+				sum += hiddenOutputs[j] * weights[wc++];
+			}
+			outputOutputs[i] = HxFuncs.tanh(sum);
+		}
 	}
-
-	/*
-		public function train(_input:Vector2, _error:Vector2) {
-			// Adjust all the inputLayer according to the error and learning rate
-			inputLayer[0] += learningRate * _error.x * _input.x;
-			inputLayer[0] += learningRate * _error.y * _input.y;
-			inputLayer[0] = HxFuncs.constrain(inputLayer[0], 0, 1);
-		}
-	 */
 }

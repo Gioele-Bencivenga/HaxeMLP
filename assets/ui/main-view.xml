@@ -26,7 +26,7 @@
 	<!-- Top Menu Bar -->
 	<menubar width="100%">
 		<menu text="Perceptron">
-			<menuitem id="btn_init_perceptron" text="Initialise" tooltip="Initialise the perceptron with random weights"/>
+			<menuitem id="btn_init_perceptron" text="Initialise" tooltip="Initialise the perceptron with random weights" />
 			<menuseparator />
 		</menu>
 		<menu text="About">
@@ -38,7 +38,7 @@
 
 	<hbox width="100%">
 		<box width="100%">
-			<button id="btn_process" text="process" horizontalAlign="center" icon="assets/icons/icon_play_light.png" tooltip="Process the inputs through the network"/>
+			<button id="btn_process" text="process" horizontalAlign="center" icon="assets/icons/icon_play_light.png" tooltip="Process the inputs through the network" />
 		</box>
 	</hbox>
 
@@ -52,7 +52,7 @@
 					<!-- List Heading -->
 					<label text="Input Layer" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
 					<!-- List View-->
-					<listview id="lst_input_layer" width="220">
+					<listview id="lst_input_layer" width="170">
 						<data>
 							<item text="weight 1" />
 							<item text="weight 2" />
@@ -69,7 +69,7 @@
 					<!-- List Heading -->
 					<label text="Connection Weights" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
 					<!-- List View-->
-					<listview id="lst_inpToHid_weights" width="220">
+					<listview id="lst_inpToHid_weights" width="170">
 						<data>
 							<item text="weight 1" />
 							<item text="weight 2" />
@@ -86,7 +86,7 @@
 					<!-- List Heading -->
 					<label text="Hidden Layer" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
 					<!-- List View-->
-					<listview id="lst_hidden_layer" width="220">
+					<listview id="lst_hidden_layer" width="170">
 						<data>
 							<item text="weight 1" />
 							<item text="weight 2" />
@@ -103,7 +103,7 @@
 					<!-- List Heading -->
 					<label text="Connection Weights" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
 					<!-- List View-->
-					<listview id="lst_hidToOut_weights" width="220">
+					<listview id="lst_hidToOut_weights" width="170">
 						<data>
 							<item text="weight 1" />
 							<item text="weight 2" />
@@ -113,17 +113,34 @@
 				</vbox>
 			</vbox>
 
+			<!--Output Layer List Container-->
 			<vbox width="100%">
 				<!-- List+Heading Container-->
 				<vbox horizontalAlign="center">
 					<!-- List Heading -->
 					<label text="Output Layer" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
 					<!-- List View-->
-					<listview id="lst_output_layer" width="200">
+					<listview id="lst_output_layer" width="170">
 						<data>
 							<item text="weight 1" />
 							<item text="weight 2" />
 							<item text="........" />
+						</data>
+					</listview>
+				</vbox>
+			</vbox>
+			
+			<!--Outputs List Container-->
+			<vbox width="100%">
+				<!-- List+Heading Container-->
+				<vbox horizontalAlign="center">
+					<!-- List Heading -->
+					<label text="Outputs" style="font-size: 16px; color: white; filter: outline(#000000, 1);" />
+					<!-- List View-->
+					<listview id="lst_outputs" width="170">
+						<data>
+							<item text="out1" />
+							<item text="out2" />
 						</data>
 					</listview>
 				</vbox>

@@ -50,6 +50,11 @@ class PlayState extends FlxState {
 	var layerLists:Array<ListView>;
 
 	/**
+	 * Our list displaying output values.
+	 */
+	var outputsList:ListView;
+
+	/**
 	 * Array of our lists displaying weights.
 	 */
 	var weightsLists:Array<ListView>;
@@ -68,6 +73,7 @@ class PlayState extends FlxState {
 		add(uiView);
 		// get the generated component and assign it to our function (xml events are for slower scripting with hscript)
 		uiView.findComponent("btn_init_perceptron", MenuItem).onClick = btn_initPerceptron_onClick;
+		uiView.findComponent("btn_process", MenuItem).onClick = btn_process_onClick;
 		uiView.findComponent("link_website", MenuItem).onClick = link_website_onClick;
 		uiView.findComponent("link_github", MenuItem).onClick = link_github_onClick;
 		// set the label to reflect the game version defined in Project.xml
@@ -81,10 +87,11 @@ class PlayState extends FlxState {
 		weightsLists = [for (i in 0...1) new ListView()];
 		weightsLists[0] = uiView.findComponent("lst_inpToHid_weights", ListView); // input to hidden weights list
 		weightsLists[1] = uiView.findComponent("lst_hidToOut_weights", ListView); // hidden to output weights list
+		outputsList = uiView.findComponent("lst_outputs", ListView); // outputs list
 	}
 
 	function btn_initPerceptron_onClick(_) {
-		perc = new Perceptron(4, 3);
+		perc = new Perceptron(4, 3, 2);
 
 		// clear all lists of previous values
 		for (list in layerLists) {
@@ -93,6 +100,7 @@ class PlayState extends FlxState {
 		for (list in weightsLists) {
 			list.dataSource.clear();
 		}
+		outputsList.dataSource.clear();
 
 		// fill layer lists
 		for (neuron in perc.inputLayer) {
@@ -111,9 +119,19 @@ class PlayState extends FlxState {
 		for (i in 0...inputToHiddenConns) {
 			weightsLists[0].dataSource.add(perc.weights[i]);
 		}
-		var hiddenToInputConns = perc.hiddenLayer.length * perc.outputLayer.length;
-		for (i in inputToHiddenConns...inputToHiddenConns + hiddenToInputConns) {
+		var hiddenToOutputConns = perc.hiddenLayer.length * perc.outputLayer.length;
+		for (i in inputToHiddenConns...inputToHiddenConns + hiddenToOutputConns) {
 			weightsLists[1].dataSource.add(perc.weights[i]);
+		}
+	}
+
+	function btn_process_onClick(_) {
+		perc.feedForward();
+
+		outputsList.dataSource.clear();
+		
+		for (outputVal in perc.outputOutputs) {
+			outputsList.dataSource.add(outputVal);
 		}
 	}
 
