@@ -1,2 +1,3 @@
 # HaxeMLP
- Trying to make a multilayer perceptron in haxe and haxeflixel.
+ 
+Basic implementation of a feedforward Multilayer Perceptron with an input layer, a hidden layer and an output layer. 
