@@ -91,7 +91,7 @@ class PlayState extends FlxState {
 	}
 
 	function btn_initPerceptron_onClick(_) {
-		perc = new Perceptron(4, 3, 2);
+		perc = new Perceptron(6, 4, 2);
 
 		// clear all lists of previous values
 		for (list in layerLists) {
@@ -126,10 +126,29 @@ class PlayState extends FlxState {
 	}
 
 	function btn_process_onClick(_) {
-		perc.feedForward();
+		// simulate inputs coming from entity's sensors (0=nothing, 1=wall, 2=resource, 3=entity)
+		var inputs:Array<Float> = [
+			FlxG.random.int(0, 3),
+			FlxG.random.int(0, 3),
+			FlxG.random.int(0, 3),
+			FlxG.random.int(0, 3),
+			FlxG.random.int(0, 3),
+			FlxG.random.int(0, 3)
+		];
+		// map inputs to range used by network
+		var mappedInputs:Array<Float> = [
+			for (input in inputs)
+				HxFuncs.map(input, 0, 3, -1, 1)
+		];
+		// feed the inputs
+		perc.feedForward(mappedInputs);
+
+		layerLists[0].dataSource.clear();
+		for (input in mappedInputs) {
+			layerLists[0].dataSource.add(input);
+		}
 
 		outputsList.dataSource.clear();
-		
 		for (outputVal in perc.outputOutputs) {
 			outputsList.dataSource.add(outputVal);
 		}
