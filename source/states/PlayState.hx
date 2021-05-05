@@ -117,23 +117,19 @@ class PlayState extends FlxState {
 		// fill weights list
 		var inputToHiddenConns = perc.inputLayer.length * perc.hiddenLayer.length;
 		for (i in 0...inputToHiddenConns) {
-			weightsLists[0].dataSource.add(perc.weights[i]);
+			weightsLists[0].dataSource.add(perc.connections[i]);
 		}
 		var hiddenToOutputConns = perc.hiddenLayer.length * perc.outputLayer.length;
 		for (i in inputToHiddenConns...inputToHiddenConns + hiddenToOutputConns) {
-			weightsLists[1].dataSource.add(perc.weights[i]);
+			weightsLists[1].dataSource.add(perc.connections[i]);
 		}
 	}
 
 	function btn_process_onClick(_) {
 		// simulate inputs coming from entity's sensors (0=nothing, 1=wall, 2=resource, 3=entity)
 		var inputs:Array<Float> = [
-			FlxG.random.int(0, 3),
-			FlxG.random.int(0, 3),
-			FlxG.random.int(0, 3),
-			FlxG.random.int(0, 3),
-			FlxG.random.int(0, 3),
-			FlxG.random.int(0, 3)
+			for (i in 0...6)
+				FlxG.random.int(0, 3)
 		];
 		// map inputs to range used by network
 		var mappedInputs:Array<Float> = [
